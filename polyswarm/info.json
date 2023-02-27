@@ -1,0 +1,230 @@
+{
+  "name": "polyswarm",
+  "label": "PolySwarm",
+  "version": "1.0.0",
+  "description": "PolySwarm is a real-time threat intelligence from a crowdsourced network of security experts and antivirus companies.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "category": "Threat Intelligence",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "name": "api_key",
+        "title": "API Key",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the PolySwarm API Key",
+        "description": "Specify the PolySwarm API Key"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "url_reputation",
+      "title": "Scan URL",
+      "annotation": "url_reputation",
+      "description": "Uploads a URL PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "url",
+          "title": "URL",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The URL to scan.",
+          "description": "Queries PolySwarm for URL reputation information."
+        }
+      ],
+      "output_schema": {
+        "positives": "",
+        "total": "",
+        "permalink": ""
+      }
+    },
+     {
+      "operation": "ip_reputation",
+      "title": "Scan IP",
+      "annotation": "ip_reputation",
+      "description": "Uploads a IP to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "url",
+          "title": "IP",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The IP to scan.",
+          "description": "Queries PolySwarm for IP reputation information."
+        }
+      ],
+      "output_schema": {
+        "positives": "",
+        "total": "",
+        "permalink": ""
+      }
+    },
+     {
+      "operation": "domain_reputation",
+      "title": "Scan Domain",
+      "annotation": "domain_reputation",
+      "description": "Uploads a URL, IP, domain to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "url",
+          "title": "Domain",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The Domain to scan.",
+          "description": "Queries PolySwarm for Domain reputation information."
+        }
+      ],
+      "output_schema": {
+        "positives": "",
+        "total": "",
+        "permalink": ""
+      }
+    },
+    {
+      "operation": "file_reputation",
+      "title": "File Reputation",
+      "annotation": "file_reputation",
+      "description": "Queries PolySwarm for file reputation information.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "hash",
+          "title": "Hash",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
+          "description": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+        }
+      ],
+      "output_schema": {
+        "Positives": "",
+        "Total": "",
+        "PolyScore": "",
+        "sha256": "",
+        "sha1": "",
+        "md5": "",
+        "Extended type": "",
+        "First Seen": "",
+        "Last Seen": "",
+        "Permalink": ""
+      }
+    },
+    {
+      "operation": "file_scan",
+      "title": "File Scan",
+      "annotation": "file_scan",
+      "description": "Uploads a file to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "input",
+          "title": "Type",
+          "type": "select",
+          "options": [
+            "Attachment ID",
+            "File IRI"
+          ],
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": "",
+          "description": "Choose between Attachment ID or a File IRI."
+        },
+        {
+          "name": "value",
+          "title": "Reference ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": "",
+          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.\nIn the playbook, if you select 'Attachment ID', this defaults to the {{vars.attachment_id}} value or if you select 'File IRI', then this defaults to the {{vars.file_iri}} value."
+        }
+      ],
+      "output_schema": {
+        "Positives": "",
+        "Total": "",
+        "PolyScore": "",
+        "sha256": "",
+        "sha1": "",
+        "md5": "",
+        "Extended type": "",
+        "First Seen": "",
+        "Last Seen": "",
+        "Permalink": ""
+      }
+    },
+    {
+      "operation": "file_rescan",
+      "title": "File Rescan",
+      "annotation": "file_rescan",
+      "description": "Rescans the uploaded artifact by hash.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "hash",
+          "title": "Hash",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
+          "description": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+        }
+      ],
+      "output_schema": {
+        "Positives": "",
+        "Total": "",
+        "PolyScore": "",
+        "sha256": "",
+        "sha1": "",
+        "md5": "",
+        "Extended type": "",
+        "First Seen": "",
+        "Last Seen": "",
+        "Permalink": ""
+      }
+    }
+  ]
+}
