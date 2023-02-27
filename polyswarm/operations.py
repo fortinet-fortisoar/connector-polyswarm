@@ -21,12 +21,12 @@ def api_client_creation(api_key, verify_ssl):
         raise ConnectorError('Unauthorized: Invalid API Key')
 
 
-def url_reputation(config, params):
+def artifact_reputation(config, params):
     api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
     positives = 0
     total = 0
     try:
-        instance = api.submit(params.get('url'), artifact_type='url')
+        instance = api.submit(params.get('artifact'), artifact_type='url')
         result = api.wait_for(instance)
         if result.failed:
             raise ConnectorError("Invalid URL")
@@ -158,9 +158,9 @@ def _check_health(config: dict) -> bool:
 
 
 operations = {
-    'url_reputation': url_reputation,
-    'ip_reputation': url_reputation,
-    'domain_reputation': url_reputation,
+    'url_reputation': artifact_reputation,
+    'ip_reputation': artifact_reputation,
+    'domain_reputation': artifact_reputation,
     'file_reputation': file_reputation,
     'file_scan': file_scan,
     'file_rescan': file_rescan
