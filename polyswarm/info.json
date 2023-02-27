@@ -19,8 +19,8 @@
         "editable": true,
         "visible": true,
         "required": true,
-        "tooltip": "Specify the PolySwarm API Key",
-        "description": "Specify the PolySwarm API Key"
+        "tooltip": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
+        "description": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm."
       },
       {
         "title": "Verify SSL",
@@ -39,20 +39,20 @@
       "operation": "url_reputation",
       "title": "Scan URL",
       "annotation": "url_reputation",
-      "description": "Uploads a URL PolySwarm and retrieves the analysis results.",
+      "description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
       "category": "investigation",
       "visible": true,
       "enabled": true,
       "parameters": [
         {
-          "name": "url",
+          "name": "artifact",
           "title": "URL",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": true,
           "tooltip": "The URL to scan.",
-          "description": "Queries PolySwarm for URL reputation information."
+          "description": "Specify the URL for which you want to retrieve the reputation information."
         }
       ],
       "output_schema": {
@@ -71,14 +71,14 @@
       "enabled": true,
       "parameters": [
         {
-          "name": "url",
+          "name": "artifact",
           "title": "IP",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": true,
           "tooltip": "The IP to scan.",
-          "description": "Queries PolySwarm for IP reputation information."
+          "description": "Specify the IP for which you want to retrieve the reputation information."
         }
       ],
       "output_schema": {
@@ -91,20 +91,20 @@
       "operation": "domain_reputation",
       "title": "Scan Domain",
       "annotation": "domain_reputation",
-      "description": "Uploads a URL, IP, domain to PolySwarm and retrieves the analysis results.",
+      "description": "Uploads a domain to PolySwarm and retrieves the analysis results.",
       "category": "investigation",
       "visible": true,
       "enabled": true,
       "parameters": [
         {
-          "name": "url",
+          "name": "artifact",
           "title": "Domain",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": true,
           "tooltip": "The Domain to scan.",
-          "description": "Queries PolySwarm for Domain reputation information."
+          "description": "Specify the domain for which you want to retrieve the reputation information."
         }
       ],
       "output_schema": {
