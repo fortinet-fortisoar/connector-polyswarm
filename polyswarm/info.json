@@ -1,0 +1,608 @@
+{
+  "name": "polyswarm",
+  "label": "PolySwarm",
+  "version": "1.0.0",
+  "description": "PolySwarm is a real-time threat intelligence from a crowdsourced network of security experts and antivirus companies. This connector facilitates the automated operations to get the URL, IP, File, Domain reputation.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "category": "Threat Intelligence",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "name": "api_key",
+        "title": "API Key",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
+        "description": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm."
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_url_reputation",
+      "title": "Get URL Reputation",
+      "annotation": "get_url_reputation",
+      "description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "artifact",
+          "title": "URL",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The URL to scan.",
+          "description": "Specify the URL for which you want to retrieve the reputation information."
+        }
+      ],
+      "output_schema": {
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
+      }
+    },
+    {
+      "operation": "get_ip_reputation",
+      "title": "Get IP Reputation",
+      "annotation": "get_ip_reputation",
+      "description": "Uploads a IP to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "artifact",
+          "title": "IP",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The IP to scan.",
+          "description": "Specify the IP for which you want to retrieve the reputation information."
+        }
+      ],
+      "output_schema": {
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
+      }
+    },
+    {
+      "operation": "get_domain_reputation",
+      "title": "Get Domain Reputation",
+      "annotation": "get_domain_reputation",
+      "description": "Uploads a domain to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "artifact",
+          "title": "Domain",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The Domain to scan.",
+          "description": "Specify the domain for which you want to retrieve the reputation information."
+        }
+      ],
+      "output_schema": {
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
+      }
+    },
+    {
+      "operation": "get_file_reputation",
+      "title": "Get File Reputation",
+      "annotation": "get_file_reputation",
+      "description": "Queries PolySwarm for file reputation information.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "hash",
+          "title": "Hash",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
+          "description": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+        }
+      ],
+      "output_schema": {
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "domains": [],
+                "heuristic": "",
+                "ip_addresses": [],
+                "malware_family": "",
+                "scanner": "",
+                "stix": []
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [
+            {
+              "arbiter": "",
+              "arbiter_name": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "environment": {
+                    "architecture": "",
+                    "operating_system": ""
+                  },
+                  "vendor_version": "",
+                  "version": ""
+                }
+              },
+              "vote": ""
+            }
+          ],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
+      }
+    },
+    {
+      "operation": "file_scan",
+      "title": "File Scan",
+      "annotation": "file_scan",
+      "description": "Uploads a file to PolySwarm and retrieves the analysis results.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "input",
+          "title": "Type",
+          "type": "select",
+          "options": [
+            "Attachment ID",
+            "File IRI"
+          ],
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": "",
+          "description": "Choose between Attachment ID or a File IRI."
+        },
+        {
+          "name": "value",
+          "title": "Reference ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": "",
+          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.\nIn the playbook, if you select 'Attachment ID', this defaults to the {{vars.attachment_id}} value or if you select 'File IRI', then this defaults to the {{vars.file_iri}} value."
+        }
+      ],
+      "output_schema": {
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "signatures_version": "",
+                  "vendor_vendor": "",
+                  "version": ""
+                }
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
+      }
+    },
+    {
+      "operation": "file_rescan",
+      "title": "File Rescan",
+      "annotation": "file_rescan",
+      "description": "Rescans the uploaded artifact by hash.",
+      "category": "investigation",
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "hash",
+          "title": "Hash",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
+          "description": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+        }
+      ],
+      "output_schema": {
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "signatures_version": "",
+                  "vendor_vendor": "",
+                  "version": ""
+                }
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,502 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+      "@type": "WorkflowCollection",
+      "name": "Sample - PolySwarm - 1.0.0",
+      "description": "PolySwarm is a real-time threat intelligence from a crowdsourced network of security experts and antivirus companies. This connector facilitates the automated operations to get the URL, IP, File, Domain reputation.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Polyswarm",
+        "polyswarm"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "36c14063-e460-44b4-90f3-9e3030f7a8c0",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
+          "name": "Get URL Reputation",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bbd98c3f-f4f2-430c-8006-c3f00c75b95a",
+          "steps": [
+            {
+              "uuid": "bbd98c3f-f4f2-430c-8006-c3f00c75b95a",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "62fe1886-5b48-482c-9d64-73c90f1cd70e",
+                "title": "PolySwarm: Get URL Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b9d5df1f-b830-41ab-b8bc-3174875261d2",
+              "@type": "WorkflowStep",
+              "name": "Get URL Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "get_url_reputation",
+                "operationTitle": "Get URL Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "a5c0fe31-5018-4cfd-9954-432d9d24c69f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get URL Reputation",
+              "sourceStep": "/api/3/workflow_steps/bbd98c3f-f4f2-430c-8006-c3f00c75b95a",
+              "targetStep": "/api/3/workflow_steps/b9d5df1f-b830-41ab-b8bc-3174875261d2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "95ffd305-f3b5-4248-8275-57a9f947fdf6",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Uploads a IP to PolySwarm and retrieves the analysis results.",
+          "name": "Get IP Reputation",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bfc3a9fa-3d14-4405-bc82-86cb440d9db5",
+          "steps": [
+            {
+              "uuid": "bfc3a9fa-3d14-4405-bc82-86cb440d9db5",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "ef8b729a-9475-4a79-b24f-5b4198ec4e35",
+                "title": "PolySwarm: Get IP Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "8c3e6b94-a9d0-4920-b299-5316ed954aa4",
+              "@type": "WorkflowStep",
+              "name": "Get IP Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "get_ip_reputation",
+                "operationTitle": "Get IP Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "9532da7b-7c28-4f15-8bb2-1017aeb8a0d3",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get IP Reputation",
+              "sourceStep": "/api/3/workflow_steps/bfc3a9fa-3d14-4405-bc82-86cb440d9db5",
+              "targetStep": "/api/3/workflow_steps/8c3e6b94-a9d0-4920-b299-5316ed954aa4"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "ab413b74-8afb-45d0-a370-c760a48b3e83",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Uploads a domain to PolySwarm and retrieves the analysis results.",
+          "name": "Get Domain Reputation",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/19227d72-8011-46ae-a1d9-2df2f31eac56",
+          "steps": [
+            {
+              "uuid": "19227d72-8011-46ae-a1d9-2df2f31eac56",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "93830e89-7854-414c-b4b5-a8a1d17f031f",
+                "title": "PolySwarm: Get Domain Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b4ae2b7f-e4af-4418-b1d9-d50e99251d9c",
+              "@type": "WorkflowStep",
+              "name": "Get Domain Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "get_domain_reputation",
+                "operationTitle": "Get Domain Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "63800fb0-bd5b-46fe-967e-05250d076bd5",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Domain Reputation",
+              "sourceStep": "/api/3/workflow_steps/19227d72-8011-46ae-a1d9-2df2f31eac56",
+              "targetStep": "/api/3/workflow_steps/b4ae2b7f-e4af-4418-b1d9-d50e99251d9c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "fec943d4-6b58-4c69-ab5f-fd5a72b86dda",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Queries PolySwarm for file reputation information.",
+          "name": "Get File Reputation",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e30bccda-a274-4286-b8f8-4e40b9f557af",
+          "steps": [
+            {
+              "uuid": "e30bccda-a274-4286-b8f8-4e40b9f557af",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d2a4f42d-d6fc-4c27-8925-e692b1f53173",
+                "title": "PolySwarm: Get File Reputation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "f968504e-b4ce-4d2c-89f6-e47c17128a77",
+              "@type": "WorkflowStep",
+              "name": "Get File Reputation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "get_file_reputation",
+                "operationTitle": "Get File Reputation",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "7e8236fc-d7fd-42e5-895a-90b69eb67043",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get File Reputation",
+              "sourceStep": "/api/3/workflow_steps/e30bccda-a274-4286-b8f8-4e40b9f557af",
+              "targetStep": "/api/3/workflow_steps/f968504e-b4ce-4d2c-89f6-e47c17128a77"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "44a473bd-c2a8-4612-abba-64a1f5911a3d",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Uploads a file to PolySwarm and retrieves the analysis results.",
+          "name": "File Scan",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/188cd293-88e5-477a-a3b1-465d99f15fd9",
+          "steps": [
+            {
+              "uuid": "188cd293-88e5-477a-a3b1-465d99f15fd9",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "0715792f-2f2e-4e43-8abc-80866cb6e6d3",
+                "title": "PolySwarm: File Scan",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "072574c1-0bc3-41b6-b8b0-5d1d65907bae",
+              "@type": "WorkflowStep",
+              "name": "File Scan",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": {
+                  "input": "",
+                  "value": ""
+                },
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "file_scan",
+                "operationTitle": "File Scan",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c5485036-935c-4350-adec-359806235a22",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> File Scan",
+              "sourceStep": "/api/3/workflow_steps/188cd293-88e5-477a-a3b1-465d99f15fd9",
+              "targetStep": "/api/3/workflow_steps/072574c1-0bc3-41b6-b8b0-5d1d65907bae"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "3e37a361-cc52-4880-9867-825ccd32d992",
+          "collection": "/api/3/workflow_collections/1d380fc8-4d79-41ba-bcb6-b66db1eff68c",
+          "triggerLimit": null,
+          "description": "Rescans the uploaded artifact by hash.",
+          "name": "File Rescan",
+          "tag": "#PolySwarm",
+          "recordTags": [
+            "Polyswarm",
+            "polyswarm"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8b6089dd-5adf-41b2-8f64-28d08d312a6b",
+          "steps": [
+            {
+              "uuid": "8b6089dd-5adf-41b2-8f64-28d08d312a6b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "245a982f-1699-43dc-baf8-d0924579d173",
+                "title": "PolySwarm: File Rescan",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "23e9db6b-c420-4cdc-aa1d-52d20ed00c95",
+              "@type": "WorkflowStep",
+              "name": "File Rescan",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "PolySwarm",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "polyswarm",
+                "operation": "file_rescan",
+                "operationTitle": "File Rescan",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "8b06004c-ed4b-49b2-81ff-c10afdb52ea3",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> File Rescan",
+              "sourceStep": "/api/3/workflow_steps/8b6089dd-5adf-41b2-8f64-28d08d312a6b",
+              "targetStep": "/api/3/workflow_steps/23e9db6b-c420-4cdc-aa1d-52d20ed00c95"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
