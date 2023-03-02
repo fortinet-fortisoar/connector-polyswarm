@@ -37,7 +37,7 @@
   "operations": [
     {
       "operation": "get_url_reputation",
-      "title": "Get Url Reputation",
+      "title": "Get URL Reputation",
       "annotation": "get_url_reputation",
       "description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
       "category": "investigation",

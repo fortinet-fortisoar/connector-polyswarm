@@ -28,9 +28,9 @@ def artifact_reputation(config, params):
     try:
         instance = api.submit(params.get('artifact'), artifact_type='url')
         scan_result = wait_for_result(api, instance)
-        if scan_result['failed']:
-            raise ConnectorError("Failed to get results")
-        return scan_result
+        if scan_result['result']['failed']:
+            raise ConnectorError("Failed to get results the status is {0} reason being {1}".format(scan_result['status'], scan_result['reason']))
+        return scan_result['result']
     except Exception as e:
         raise ConnectorError(e)
 
@@ -84,9 +84,9 @@ def file_scan(config, params):
         logger.error("file path is {}".format(files))
         instance = api.submit(files)
         scan_result = wait_for_result(api, instance)
-        if scan_result['failed']:
-            raise ConnectorError("Failed to get results")
-        return scan_result
+        if scan_result['result']['failed']:
+            raise ConnectorError("Failed to get results the status is {0} reason being {1}".format(scan_result['status'], scan_result['reason']))
+        return scan_result['result']
     except Exception as e:
         raise ConnectorError(e)
 
@@ -99,13 +99,13 @@ def wait_for_result(api, instance):
             api,
             {
                 'method': 'GET',
-                'url': '{}/consumer/submission/{}/{}'.format(api.uri, api.community, int(instance.artifact_id)),
+                'url': '{0}/consumer/submission/{1}/{2}'.format(api.uri, api.community, int(instance.artifact_id)),
             },
             result_parser=None, ).execute()
 
-        scan_result = scan_result.raw_result.json().get('result')
+        scan_result = scan_result.raw_result.json()
 
-        if scan_result['failed'] or scan_result['window_closed']:
+        if scan_result['result']['failed'] or scan_result['result']['window_closed']:
             return scan_result
         elif -1 < timeout < time.time() - start:
             raise exceptions.TimeoutException('Timed out waiting for scan {} to finish. Please try again.')
@@ -118,9 +118,9 @@ def file_rescan(config, params):
         api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
         instance = api.rescan(params.get('hash'))
         scan_result = wait_for_result(api, instance)
-        if scan_result['failed']:
-            raise ConnectorError("Failed to get results")
-        return scan_result
+        if scan_result['result']['failed']:
+            raise ConnectorError("Failed to get results the status is {0} reason being {1}".format(scan_result['status'], scan_result['reason']))
+        return scan_result['result']
     except Exception as e:
         raise ConnectorError(e)
 
@@ -129,7 +129,7 @@ def file_reputation(config, params):
     try:
         api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
         hash_ = resources.Hash.from_hashable(params.get('hash'), hash_type=None)
-        result = core.PolyswarmRequest(
+        results = core.PolyswarmRequest(
             api,
             {
                 'method': 'GET',
@@ -140,10 +140,10 @@ def file_reputation(config, params):
             },
             result_parser=None,
         ).execute()
-        response = result.raw_result.json()
+        response = results.raw_result.json()
         for result in response.get('result'):
             if result.get('failed'):
-                raise ConnectorError("Failed to get result.")
+                raise ConnectorError("Failed to get result, status code is {0} and the reason being {1}".format(results.status_code, results.errors))
             if not result.get('assertions'):
                 raise ConnectorError('Artifact not scanned yet - Run rescan for this hash')
             return result
