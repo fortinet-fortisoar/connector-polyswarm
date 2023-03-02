@@ -2,7 +2,7 @@
   "name": "polyswarm",
   "label": "PolySwarm",
   "version": "1.0.0",
-  "description": "PolySwarm is a real-time threat intelligence from a crowdsourced network of security experts and antivirus companies.",
+  "description": "PolySwarm is a real-time threat intelligence from a crowdsourced network of security experts and antivirus companies. This connector facilitates the automated operations to get the URL, IP, File, Domain reputation.",
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
