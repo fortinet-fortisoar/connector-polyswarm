@@ -6,8 +6,6 @@
 
 from connectors.core.connector import Connector, get_logger, ConnectorError
 from .operations import operations, _check_health
-
-
 logger = get_logger('polyswarm')
 
 

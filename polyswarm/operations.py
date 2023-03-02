@@ -5,10 +5,12 @@
   Copyright end """
 
 from polyswarm_api.api import PolyswarmAPI
+from polyswarm_api import resources, core, exceptions, settings
 from connectors.core.connector import get_logger, ConnectorError
 from os.path import join
 from connectors.cyops_utilities.builtins import upload_file_to_cyops, download_file_from_cyops
 from integrations.crudhub import make_request
+import time
 
 logger = get_logger('polyswarm')
 
@@ -23,23 +25,12 @@ def api_client_creation(api_key, verify_ssl):
 
 def artifact_reputation(config, params):
     api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
-    positives = 0
-    total = 0
     try:
         instance = api.submit(params.get('artifact'), artifact_type='url')
-        result = api.wait_for(instance)
-        if result.failed:
-            raise ConnectorError("Invalid URL")
-        for assertion in result.assertions:
-            if assertion.verdict:
-                positives += 1
-            total += 1
-        return {
-            "positives": positives,
-            "total": total,
-            "permalink": result.permalink
-        }
-        return result
+        scan_result = wait_for_result(api, instance)
+        if scan_result['failed']:
+            raise ConnectorError("Failed to get results")
+        return scan_result
     except Exception as e:
         raise ConnectorError(e)
 
@@ -85,28 +76,6 @@ def submitFile(file_iri):
         raise ConnectorError('Error in submitFile(): %s' % Err)
 
 
-def evaluate_assertions(result):
-    positives = 0
-    total = 0
-    for assertion in result.assertions:
-        if assertion.verdict:
-            positives += 1
-        total += 1
-
-    return {
-        'Positives': positives,
-        'Total': total,
-        'PolyScore': result.polyscore,
-        'sha256': result.sha256,
-        'sha1': result.sha1,
-        'md5': result.md5,
-        'Extended type': result.extended_type,
-        'First Seen': result.first_seen,
-        'Last Seen': result.last_seen,
-        'Permalink': result.permalink
-    }
-
-
 def file_scan(config, params):
     try:
         api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
@@ -114,22 +83,44 @@ def file_scan(config, params):
         files = submitFile(file_iri)
         logger.error("file path is {}".format(files))
         instance = api.submit(files)
-        result = api.wait_for(instance)
-        if result.failed:
+        scan_result = wait_for_result(api, instance)
+        if scan_result['failed']:
             raise ConnectorError("Failed to get results")
-        return evaluate_assertions(result)
+        return scan_result
     except Exception as e:
         raise ConnectorError(e)
+
+
+def wait_for_result(api, instance):
+    start = time.time()
+    timeout = settings.DEFAULT_SCAN_TIMEOUT
+    while True:
+        scan_result = core.PolyswarmRequest(
+            api,
+            {
+                'method': 'GET',
+                'url': '{}/consumer/submission/{}/{}'.format(api.uri, api.community, int(instance.artifact_id)),
+            },
+            result_parser=None, ).execute()
+
+        scan_result = scan_result.raw_result.json().get('result')
+
+        if scan_result['failed'] or scan_result['window_closed']:
+            return scan_result
+        elif -1 < timeout < time.time() - start:
+            raise exceptions.TimeoutException('Timed out waiting for scan {} to finish. Please try again.')
+        else:
+            time.sleep(settings.POLL_FREQUENCY)
 
 
 def file_rescan(config, params):
     try:
         api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
         instance = api.rescan(params.get('hash'))
-        result = api.wait_for(instance)
-        if result.failed:
+        scan_result = wait_for_result(api, instance)
+        if scan_result['failed']:
             raise ConnectorError("Failed to get results")
-        return evaluate_assertions(result)
+        return scan_result
     except Exception as e:
         raise ConnectorError(e)
 
@@ -137,13 +128,26 @@ def file_rescan(config, params):
 def file_reputation(config, params):
     try:
         api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
-        results = api.search(params.get('hash'))
-        for result in results:
-            if result.failed:
+        hash_ = resources.Hash.from_hashable(params.get('hash'), hash_type=None)
+        result = core.PolyswarmRequest(
+            api,
+            {
+                'method': 'GET',
+                'url': '{}/search/hash/{}'.format(api.uri, hash_.hash_type),
+                'params': {
+                    'hash': params.get('hash'),
+                },
+            },
+            result_parser=None,
+        ).execute()
+        response = result.raw_result.json()
+        for result in response.get('result'):
+            if result.get('failed'):
                 raise ConnectorError("Failed to get result.")
-            if not result.assertions:
+            if not result.get('assertions'):
                 raise ConnectorError('Artifact not scanned yet - Run rescan for this hash')
-            return evaluate_assertions(result)
+            return result
+
     except Exception as e:
         raise ConnectorError(e)
 
@@ -158,10 +162,10 @@ def _check_health(config: dict) -> bool:
 
 
 operations = {
-    'url_reputation': artifact_reputation,
-    'ip_reputation': artifact_reputation,
-    'domain_reputation': artifact_reputation,
-    'file_reputation': file_reputation,
+    'get_url_reputation': artifact_reputation,
+    'get_ip_reputation': artifact_reputation,
+    'get_domain_reputation': artifact_reputation,
+    'get_file_reputation': file_reputation,
     'file_scan': file_scan,
     'file_rescan': file_rescan
 }

@@ -36,9 +36,9 @@
   },
   "operations": [
     {
-      "operation": "url_reputation",
-      "title": "Scan URL",
-      "annotation": "url_reputation",
+      "operation": "get_url_reputation",
+      "title": "Get Url Reputation",
+      "annotation": "get_url_reputation",
       "description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
       "category": "investigation",
       "visible": true,
@@ -56,15 +56,75 @@
         }
       ],
       "output_schema": {
-        "positives": "",
-        "total": "",
-        "permalink": ""
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
       }
     },
-     {
-      "operation": "ip_reputation",
-      "title": "Scan IP",
-      "annotation": "ip_reputation",
+    {
+      "operation": "get_ip_reputation",
+      "title": "Get IP Reputation",
+      "annotation": "get_ip_reputation",
       "description": "Uploads a IP to PolySwarm and retrieves the analysis results.",
       "category": "investigation",
       "visible": true,
@@ -82,15 +142,75 @@
         }
       ],
       "output_schema": {
-        "positives": "",
-        "total": "",
-        "permalink": ""
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
       }
     },
-     {
-      "operation": "domain_reputation",
-      "title": "Scan Domain",
-      "annotation": "domain_reputation",
+    {
+      "operation": "get_domain_reputation",
+      "title": "Get Domain Reputation",
+      "annotation": "get_domain_reputation",
       "description": "Uploads a domain to PolySwarm and retrieves the analysis results.",
       "category": "investigation",
       "visible": true,
@@ -108,15 +228,75 @@
         }
       ],
       "output_schema": {
-        "positives": "",
-        "total": "",
-        "permalink": ""
+        "artifact_id": "",
+        "assertions": [
+          {
+            "author": "",
+            "author_name": "",
+            "bid": "",
+            "engine": {
+              "description": "",
+              "name": ""
+            },
+            "mask": "",
+            "metadata": {
+              "product": "",
+              "scanner": {
+                "environment": {
+                  "architecture": "",
+                  "operating_system": ""
+                },
+                "vendor_version": "",
+                "version": ""
+              }
+            },
+            "verdict": ""
+          }
+        ],
+        "community": "",
+        "country": "",
+        "created": "",
+        "detections": {
+          "benign": "",
+          "malicious": "",
+          "total": ""
+        },
+        "extended_type": "",
+        "failed": "",
+        "filename": "",
+        "first_seen": "",
+        "id": "",
+        "last_scanned": "",
+        "last_seen": "",
+        "md5": "",
+        "metadata": [
+          {
+            "created": "",
+            "tool": "",
+            "tool_metadata": {
+              "labels": [],
+              "malware_family": "",
+              "operating_system": []
+            },
+            "updated": ""
+          }
+        ],
+        "mimetype": "",
+        "polyscore": "",
+        "result": "",
+        "sha1": "",
+        "sha256": "",
+        "size": "",
+        "type": "",
+        "upload_url": "",
+        "votes": [],
+        "window_closed": ""
       }
     },
     {
-      "operation": "file_reputation",
-      "title": "File Reputation",
-      "annotation": "file_reputation",
+      "operation": "get_file_reputation",
+      "title": "Get File Reputation",
+      "annotation": "get_file_reputation",
       "description": "Queries PolySwarm for file reputation information.",
       "category": "investigation",
       "visible": true,
@@ -134,16 +314,96 @@
         }
       ],
       "output_schema": {
-        "Positives": "",
-        "Total": "",
-        "PolyScore": "",
-        "sha256": "",
-        "sha1": "",
-        "md5": "",
-        "Extended type": "",
-        "First Seen": "",
-        "Last Seen": "",
-        "Permalink": ""
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "domains": [],
+                "heuristic": "",
+                "ip_addresses": [],
+                "malware_family": "",
+                "scanner": "",
+                "stix": []
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [
+            {
+              "arbiter": "",
+              "arbiter_name": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "environment": {
+                    "architecture": "",
+                    "operating_system": ""
+                  },
+                  "vendor_version": "",
+                  "version": ""
+                }
+              },
+              "vote": ""
+            }
+          ],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
       }
     },
     {
@@ -181,16 +441,75 @@
         }
       ],
       "output_schema": {
-        "Positives": "",
-        "Total": "",
-        "PolyScore": "",
-        "sha256": "",
-        "sha1": "",
-        "md5": "",
-        "Extended type": "",
-        "First Seen": "",
-        "Last Seen": "",
-        "Permalink": ""
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "signatures_version": "",
+                  "vendor_vendor": "",
+                  "version": ""
+                }
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
       }
     },
     {
@@ -214,16 +533,75 @@
         }
       ],
       "output_schema": {
-        "Positives": "",
-        "Total": "",
-        "PolyScore": "",
-        "sha256": "",
-        "sha1": "",
-        "md5": "",
-        "Extended type": "",
-        "First Seen": "",
-        "Last Seen": "",
-        "Permalink": ""
+        "operation": "",
+        "status": "",
+        "message": "",
+        "data": {
+          "artifact_id": "",
+          "assertions": [
+            {
+              "author": "",
+              "author_name": "",
+              "bid": "",
+              "engine": {
+                "description": "",
+                "name": ""
+              },
+              "mask": "",
+              "metadata": {
+                "malware_family": "",
+                "product": "",
+                "scanner": {
+                  "signatures_version": "",
+                  "vendor_vendor": "",
+                  "version": ""
+                }
+              },
+              "verdict": ""
+            }
+          ],
+          "community": "",
+          "country": "",
+          "created": "",
+          "detections": {
+            "benign": "",
+            "malicious": "",
+            "total": ""
+          },
+          "extended_type": "",
+          "failed": "",
+          "filename": "",
+          "first_seen": "",
+          "id": "",
+          "last_scanned": "",
+          "last_seen": "",
+          "md5": "",
+          "metadata": [
+            {
+              "created": "",
+              "tool": "",
+              "tool_metadata": {
+                "labels": [],
+                "malware_family": "",
+                "operating_system": []
+              },
+              "updated": ""
+            }
+          ],
+          "mimetype": "",
+          "polyscore": "",
+          "result": "",
+          "sha1": "",
+          "sha256": "",
+          "size": "",
+          "type": "",
+          "upload_url": "",
+          "votes": [],
+          "window_closed": ""
+        },
+        "env": {},
+        "_status": "",
+        "request_id": ""
       }
     }
   ]
