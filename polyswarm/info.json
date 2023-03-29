@@ -15,7 +15,7 @@
       {
         "name": "api_key",
         "title": "API Key",
-        "type": "text",
+        "type": "password",
         "editable": true,
         "visible": true,
         "required": true,

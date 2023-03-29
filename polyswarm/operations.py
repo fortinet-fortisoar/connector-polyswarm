@@ -10,9 +10,16 @@ from connectors.core.connector import get_logger, ConnectorError
 from os.path import join
 from connectors.cyops_utilities.builtins import upload_file_to_cyops, download_file_from_cyops
 from integrations.crudhub import make_request
+import validators
 import time
 
 logger = get_logger('polyswarm')
+
+itype_dict = {
+    "get_url_reputation": "url",
+    "get_ip_reputation": "ip",
+    "get_domain_reputation": "domain"
+}
 
 
 def api_client_creation(api_key, verify_ssl):
@@ -23,9 +30,22 @@ def api_client_creation(api_key, verify_ssl):
         raise ConnectorError('Unauthorized: Invalid API Key')
 
 
+def validate_input(itype, value):
+    validator = {'domain': validators.domain,
+                 'ip': validators.ipv4,
+                 'url': validators.url
+                 }
+    action = validator.get(itype)
+    if action and not action(str(value)):
+        raise ConnectorError("Invalid {0} {1}".format(itype, value))
+    else:
+        return True
+
+
 def artifact_reputation(config, params):
     api = api_client_creation(config.get('api_key'), config.get("verify_ssl"))
     try:
+        validate_input(itype_dict.get(config.get('operation')), params.get('artifact'))
         instance = api.submit(params.get('artifact'), artifact_type='url')
         scan_result = wait_for_result(api, instance)
         if scan_result['result']['failed']:

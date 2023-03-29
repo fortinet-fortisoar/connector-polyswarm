@@ -12,6 +12,7 @@ logger = get_logger('polyswarm')
 class PolySwarm(Connector):
     def execute(self, config, operation, params, **kwargs):
         try:
+            config['operation'] = operation
             operation = operations.get(operation)
             if not operation:
                 logger.error('Unsupported operation: {}'.format(operation))
