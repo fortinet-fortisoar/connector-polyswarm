@@ -9,13 +9,13 @@
   "category": "Threat Intelligence",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/polyswarm/535/polyswarm-v1-0-0",
   "configuration": {
     "fields": [
       {
         "name": "api_key",
         "title": "API Key",
-        "type": "text",
+        "type": "password",
         "editable": true,
         "visible": true,
         "required": true,
@@ -52,7 +52,7 @@
           "visible": true,
           "required": true,
           "tooltip": "The URL to scan.",
-          "description": "Specify the URL for which you want to retrieve the reputation information."
+          "description": "Specify the URL to retrieve its reputation information from PolySwarm."
         }
       ],
       "output_schema": {
@@ -138,7 +138,7 @@
           "visible": true,
           "required": true,
           "tooltip": "The IP to scan.",
-          "description": "Specify the IP for which you want to retrieve the reputation information."
+          "description": "Specify the IP address to retrieve its reputation information from PolySwarm."
         }
       ],
       "output_schema": {
@@ -224,7 +224,7 @@
           "visible": true,
           "required": true,
           "tooltip": "The Domain to scan.",
-          "description": "Specify the domain for which you want to retrieve the reputation information."
+          "description": "Specify the domain to retrieve its reputation information from PolySwarm."
         }
       ],
       "output_schema": {
@@ -310,7 +310,7 @@
           "visible": true,
           "required": true,
           "tooltip": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
-          "description": "The value of the file hash for which to retrieve the reputation information. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+          "description": "The value of the file hash to retrieve its reputation information from PolySwarm. The hash type can be: SHA256, SHA1, or MD5. "
         }
       ],
       "output_schema": {
@@ -437,7 +437,7 @@
           "visible": true,
           "required": true,
           "value": "",
-          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.\nIn the playbook, if you select 'Attachment ID', this defaults to the {{vars.attachment_id}} value or if you select 'File IRI', then this defaults to the {{vars.file_iri}} value."
+          "description": "Specify a reference ID to access the attachment metadata from the FortiSOAR™ Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value."
         }
       ],
       "output_schema": {
@@ -516,7 +516,7 @@
       "operation": "file_rescan",
       "title": "File Rescan",
       "annotation": "file_rescan",
-      "description": "Rescans the uploaded artifact by hash.",
+      "description": "Rescans the uploaded artifact by using its hash.",
       "category": "investigation",
       "visible": true,
       "enabled": true,
@@ -528,8 +528,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
-          "description": "The type of the file hash to rescan. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\"."
+          "tooltip": "Specify the file hash to rescan and retrieve its reputation information from PolySwarm.. The hash type can be: \"SHA256\", \"SHA1\", or \"MD5\".",
+          "description": "Specify the file hash to rescan and retrieve its reputation information from PolySwarm. The hash type can be: SHA256, SHA1, or MD5."
         }
       ],
       "output_schema": {
