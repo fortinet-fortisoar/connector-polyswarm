@@ -178,6 +178,7 @@ def _check_health(config: dict) -> bool:
         api.submit('https://polyswarm.io', artifact_type='url')
         return True
     except Exception as e:
+        logger.error("Invalid API Key: %s" % str(e))
         raise ConnectorError("Invalid API Key")
 
 
